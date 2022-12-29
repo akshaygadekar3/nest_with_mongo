@@ -35,6 +35,7 @@ export class TasksController {
 
   @Get()
   async findAll(@GetUser() user: Auth) {
+    console.log(user)
     return await this.tasksService.findAll(user);
   }
 

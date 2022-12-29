@@ -29,7 +29,6 @@ export class TaskRepository {
   async deleteById(id: string, user: Auth): Promise<object> {
     const result = await this.taskModel.deleteOne({ _id: id, user });
     if (result.deletedCount !== 0) {
-      console.log(result);
       return { message: `Task with id : ${id} deleted succesfully` };
     } else {
       throw new NotFoundException(`Task with id : ${id} not found`);

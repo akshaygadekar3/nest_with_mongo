@@ -13,6 +13,10 @@ export class Auth {
   @Prop({ required: true })
   @ExcludeProperty()
   password: string;
+
+  @Prop({ required: true })
+  @ExcludeProperty()
+  isActive: boolean;
 }
 
 export const AuthSchema = SchemaFactory.createForClass(Auth);
