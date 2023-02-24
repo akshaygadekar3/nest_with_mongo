@@ -1,4 +1,8 @@
-import { createParamDecorator, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import {
+  createParamDecorator,
+  ExecutionContext,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Auth } from './schema/auth.schema';
 
 export const GetUser = createParamDecorator(
@@ -6,8 +10,8 @@ export const GetUser = createParamDecorator(
     const req = ctx.switchToHttp().getRequest();
     if (req.user.isActive) {
       return req.user;
-    }else{
-      throw new UnauthorizedException()
+    } else {
+      throw new UnauthorizedException();
     }
   },
 );

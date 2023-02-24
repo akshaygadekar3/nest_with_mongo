@@ -8,7 +8,7 @@ import { Auth } from 'src/auth/schema/auth.schema';
 export class TasksService {
   constructor(private readonly taskRepository: TaskRepository) {}
 
-  async create(createTaskDto: CreateTaskDto, user : Auth): Promise<Task> {
+  async create(createTaskDto: CreateTaskDto, user: Auth): Promise<Task> {
     return await this.taskRepository.create(createTaskDto, user);
   }
 
@@ -16,12 +16,11 @@ export class TasksService {
     return await this.taskRepository.findAll(user);
   }
 
-  async deleteById(id: string, user : Auth): Promise<object> {
+  async deleteById(id: string, user: Auth): Promise<object> {
     return this.taskRepository.deleteById(id, user);
   }
 
-  async findById(id: string, user: Auth): Promise<Task>{
-    return this.taskRepository.findById(id, user)
+  async findById(id: string, user: Auth): Promise<Task> {
+    return this.taskRepository.findById(id, user);
   }
-
 }

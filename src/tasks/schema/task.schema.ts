@@ -4,17 +4,21 @@ import * as mongoose from 'mongoose';
 import { Auth } from 'src/auth/schema/auth.schema';
 import { TaskStatus } from '../taskStatus.enum';
 import { ExcludeProperty } from 'nestjs-mongoose-exclude';
+import { ApiProperty } from '@nestjs/swagger';
 
 export type TaskDocument = HydratedDocument<Task>;
 
 @Schema()
 export class Task {
+  @ApiProperty({example: "Title"})
   @Prop({ required: true })
   title: string;
 
+  @ApiProperty({example: "Description"})
   @Prop({ required: true })
   description: string;
 
+  @ApiProperty({example: "Status"})
   @Prop({ required: true })
   status: TaskStatus;
 

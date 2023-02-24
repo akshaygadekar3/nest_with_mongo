@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { AuthRepository } from './auth.repository';
+import { AdminAuthCredentialsDto } from './dto/admin- auth-credentials.dto';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +17,10 @@ export class AuthService {
     return await this.authRepository.signIn(authCredentialsDto);
   }
 
-  async setStatus(id: string, username : string, password : string, isActive: boolean){
-    return await this.authRepository.setStatus(id, username, password, isActive)
+  async setStatus(
+    id: string,
+    adminAuthCredentialsDto: AdminAuthCredentialsDto,
+  ): Promise<Object> {
+    return await this.authRepository.setStatus(id, adminAuthCredentialsDto);
   }
 }

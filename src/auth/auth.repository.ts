@@ -11,6 +11,7 @@ import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { Auth, AuthDocument } from './schema/auth.schema';
 import * as bcrypt from 'bcrypt';
 import { JwtPayload } from './jwt-payload.interface';
+import { AdminAuthCredentialsDto } from './dto/admin- auth-credentials.dto';
 
 @Injectable()
 export class AuthRepository {
@@ -58,17 +59,14 @@ export class AuthRepository {
   }
 
   async setStatus(
-    id: string,
-    username: string,
-    password: string,
-    isActive: boolean,
-  ): Promise<string> {
+    id: string,adminAuthCredentialsDto: AdminAuthCredentialsDto,
+  ): Promise<Object> {
     const user = await this.authModel.findOne({ _id: id });
-    console.log(!!user, username, password, isActive);
+    const{username, password, isActive} = adminAuthCredentialsDto
     if (!!user && username === 'admin' && password === 'admin') {
       user.isActive = isActive;
       await user.save();
-      return 'done';
+      return { message: 'Status changed successfully' };
     } else {
       throw new NotFoundException('No user found with specified id');
     }

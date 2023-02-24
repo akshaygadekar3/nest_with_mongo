@@ -4,7 +4,11 @@ import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TasksModule, MongooseModule.forRoot(process.env.MONGODB_URL), AuthModule,],
+  imports: [
+    TasksModule,
+    MongooseModule.forRoot(process.env.MONGODB_URL || 'mongodb://localhost/nest-project'),
+    AuthModule,
+  ],
   controllers: [],
   providers: [],
 })
